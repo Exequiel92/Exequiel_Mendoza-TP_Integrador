@@ -1,13 +1,13 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 
-const connectDB = async () => {
+const dbconnect = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/GestorLibros", {});
-    console.log("Conectado a la base de datos");
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("Conexión exitosa a MongoDB Atlas");
   } catch (error) {
-    console.log(error);
-    process.exit(1);
+    console.error("Error al conectar a MongoDB Atlas:", error.message);
   }
 };
 
-module.exports = connectDB;
+module.exports = dbconnect;
