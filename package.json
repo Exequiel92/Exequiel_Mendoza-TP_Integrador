@@ -1,0 +1,19 @@
+{
+  "name": "exequiel-mendoza-node-polo-tecnologico",
+  "version": "1.0.0",
+  "description": "trabajo-practico",
+  "main": "app.js",
+    "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
