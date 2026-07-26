@@ -1,28 +1,23 @@
 const express = require("express");
 const app = express();
-const dbconnect = require("./config/db");
 
-const librosRoutes = require("./routes/libros.routes");
+const dbconnect = require("./config/db");
+const productosRoutes = require("./routes/productos");
+
+const port = 4000;
 
 app.use(express.json());
 
-const router = express.Router();
-
-app.use("/libros", librosRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Bienvenidos a la API");
-});
-
-const PORT = process.env.PORT || 7000;
+app.use(productosRoutes);
 
 dbconnect()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Servidor escuchando en puerto ${PORT}`);
+    app.listen(port, () => {
+      console.log(`Servidor escuchando en http://localhost:${port}`);
     });
   })
   .catch((error) => {
-    console.error("Error al conectar");
-    process.exit(1);
+    console.error("No se pudo iniciar el servidor.", error);
   });
+
+module.exports = app;
