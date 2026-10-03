@@ -10,15 +10,13 @@ const BarraNavegacion = () => {
       className="shadow-sm py-3"
     >
       <Container>
-        <Navbar.Brand href="#Inicio" className="fw-bold">
-          Pilar Tecno
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-principal" />
-        <Navbar.Collapse id="navbar-principal">
-          <Nav className="ms-auto gap-lg-3">
-            <Nav.Link href="#Inicio">Inicio</Nav.Link>
-            <Nav.Link href="#Cursos">Cursos</Nav.Link>
-            <Nav.Link href="#Contactos">Contactos</Nav.Link>
+        <Navbar.Brand href="#inicio">Pilar Tecno</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <Nav className="ms-auto">
+            <Nav.Link href="#inicio">Inicio</Nav.Link>
+            <Nav.Link href="#cursos">Cursos</Nav.Link>
+            <Nav.Link href="#contacto">Contacto</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
