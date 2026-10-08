@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import BotonColor from "../BotonColor/BotonColor";
+import ListaProductos from "../ListaProductos/ListaProductos";
 
 const SeccionHero = () => {
   return (
@@ -11,7 +12,9 @@ const SeccionHero = () => {
             <p className="lead text-secondary">Bienvenido al curso de React</p>
             <BotonColor />
           </Col>
-          <Col md={6}></Col>
+          <Col md={6}>
+            <ListaProductos />
+          </Col>
         </Row>
       </Container>
     </section>
