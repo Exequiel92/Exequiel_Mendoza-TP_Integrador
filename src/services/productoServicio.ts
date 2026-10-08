@@ -12,11 +12,3 @@ export const obtenerProductos = async (): Promise<Producto[]> => {
     throw error;
   }
 };
-
-const libroServicio = () => {
-  return (
-    <div>libroServicio</div>
-  )
-}
-
-export default libroServicio

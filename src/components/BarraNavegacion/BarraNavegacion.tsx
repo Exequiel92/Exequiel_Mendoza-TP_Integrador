@@ -1,4 +1,5 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const BarraNavegacion = () => {
   return (
@@ -10,13 +11,18 @@ const BarraNavegacion = () => {
       className="shadow-sm py-3"
     >
       <Container>
-        <Navbar.Brand href="#inicio">Pilar Tecno</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/" className="fw-bold">
+          Tienda
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="ms-auto">
-            <Nav.Link href="#inicio">Inicio</Nav.Link>
-            <Nav.Link href="#cursos">Cursos</Nav.Link>
-            <Nav.Link href="#contacto">Contacto</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Inicio
+            </Nav.Link>
+            <Nav.Link as={Link} to="/productos">
+              Productos
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
