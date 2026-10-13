@@ -7,3 +7,8 @@ export type Producto = {
   categoria: string;
   fechaIngreso: Date;
 };
+
+export type ProductoFormulario = Pick<
+  Producto,
+  "nombre" | "descripcion" | "precio" | "cantidad" | "categoria"
+>;
