@@ -5,6 +5,7 @@ import type { ProductoFormulario } from "../../types/Producto";
 
 type Props = {
   mostrar: boolean;
+  producto: Producto | null;
   onCerrar: () => void;
   onGuardar: (producto: ProductoFormulario) => void | Promise<void>;
 };
@@ -33,9 +34,19 @@ const valoresIniciales: ProductoFormulario = {
   categoria: "",
 };
 
-const ModalProducto = ({ mostrar, onCerrar, onGuardar }: Props) => {
+const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
   const formik = useFormik<ProductoFormulario>({
-    initialValues: valoresIniciales,
+    initialValues: producto
+      ? {
+          nombre: producto.nombre,
+          descripcion: producto.descripcion,
+          precio: producto.precio,
+          cantidad: producto.cantidad,
+          categoria: producto.categoria,
+        }
+      : valoresIniciales,
+
+    enableReinitialize: true,
     validationSchema: esquema,
     onSubmit: async (valores, { resetForm, setStatus }) => {
       try {
@@ -113,7 +124,9 @@ const ModalProducto = ({ mostrar, onCerrar, onGuardar }: Props) => {
     <Modal show={mostrar} onHide={cerrarModal} centered>
       <Form onSubmit={formik.handleSubmit} noValidate>
         <Modal.Header closeButton>
-          <Modal.Title>Agregar producto</Modal.Title>
+          <Modal.Title>
+            {producto ? "Editar producto" : "Agregar producto"}
+          </Modal.Title>{" "}
         </Modal.Header>
 
         <Modal.Body>
