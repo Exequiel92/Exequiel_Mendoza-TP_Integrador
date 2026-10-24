@@ -1,0 +1,228 @@
+.manual-usuario {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #29324a;
+}
+
+.manual-usuario__cabecera {
+  margin-bottom: 2.5rem;
+  padding: 2.5rem;
+  border: 1px solid #e6e9f5;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #596bc3 0%, #4757a8 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(71, 87, 168, 0.15);
+}
+
+.manual-usuario__cabecera h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.manual-usuario__cabecera p {
+  max-width: 680px;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.manual-usuario__boton {
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #4757a8;
+  font-weight: 700;
+  padding: 0.75rem 1.2rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.manual-usuario__boton:hover,
+.manual-usuario__boton:focus {
+  background: #f0f2ff;
+  color: #39488f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(24, 34, 83, 0.15);
+}
+
+.manual-usuario__resumen {
+  margin-bottom: 3.5rem;
+}
+
+.manual-usuario__tarjeta {
+  border: 1px solid #e8ebf5;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(38, 48, 84, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.manual-usuario__tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(38, 48, 84, 0.08);
+}
+
+.manual-usuario__tarjeta .card-body {
+  padding: 1.5rem;
+}
+
+.manual-usuario__icono {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  border-radius: 14px;
+  background: #edf0ff;
+  color: #596bc3;
+  font-size: 1.5rem;
+}
+
+.manual-usuario__tarjeta .card-title {
+  margin-bottom: 0.75rem;
+  color: #303a58;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.manual-usuario__tarjeta .card-text {
+  margin-bottom: 0;
+  color: #6b7388;
+  line-height: 1.7;
+}
+
+.manual-usuario__titulo-seccion {
+  margin-bottom: 1.5rem;
+}
+
+.manual-usuario__titulo-seccion > span {
+  color: #596bc3;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.manual-usuario__titulo-seccion h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+  color: #303a58;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+}
+
+.manual-usuario__titulo-seccion p {
+  color: #737b91;
+  line-height: 1.7;
+}
+
+.manual-usuario__acordeon {
+  --bs-accordion-border-color: #e8ebf5;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(89, 107, 195, 0.15);
+  --bs-accordion-active-bg: #edf0ff;
+  --bs-accordion-active-color: #4757a8;
+}
+
+.manual-usuario__acordeon .accordion-item {
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  border: 1px solid #e7eaf4;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.manual-usuario__acordeon .accordion-button {
+  padding: 1.2rem 1.3rem;
+  color: #35405e;
+  font-weight: 700;
+}
+
+.manual-usuario__acordeon .accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.manual-usuario__acordeon .accordion-button i {
+  color: #596bc3;
+  font-size: 1.1rem;
+}
+
+.manual-usuario__acordeon .accordion-body {
+  padding: 1.4rem;
+  color: #626b81;
+  line-height: 1.8;
+}
+
+.manual-usuario__acordeon .accordion-body strong {
+  color: #35405e;
+}
+
+.manual-usuario__acordeon .accordion-body li {
+  margin-bottom: 0.55rem;
+}
+
+.manual-usuario__acordeon code {
+  border-radius: 4px;
+  background: #edf0ff;
+  color: #4757a8;
+  padding: 0.15rem 0.35rem;
+}
+
+.manual-usuario__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  border: 1px solid #e6e9f5;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.manual-usuario__pie h3 {
+  margin-bottom: 0.5rem;
+  color: #303a58;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.manual-usuario__pie p {
+  margin-bottom: 0;
+  color: #737b91;
+  line-height: 1.7;
+}
+
+.manual-usuario__pie .manual-usuario__boton {
+  flex-shrink: 0;
+  background: #596bc3;
+  color: #ffffff;
+}
+
+.manual-usuario__pie .manual-usuario__boton:hover,
+.manual-usuario__pie .manual-usuario__boton:focus {
+  background: #4757a8;
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .manual-usuario__cabecera {
+    padding: 1.6rem;
+    border-radius: 16px;
+  }
+
+  .manual-usuario__pie {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .manual-usuario__pie .manual-usuario__boton {
+    width: 100%;
+  }
+}
