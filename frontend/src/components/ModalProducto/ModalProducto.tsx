@@ -1,7 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import type { ProductoFormulario } from "../../types/Producto";
+import type { Producto, ProductoFormulario } from "../../types/Producto";
 
 type Props = {
   mostrar: boolean;
