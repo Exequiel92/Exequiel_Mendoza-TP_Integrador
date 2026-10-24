@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import type { Producto, ProductoFormulario } from "../../types/Producto";
+import "./ModalProducto.css";
 
 type Props = {
   mostrar: boolean;
@@ -12,18 +14,42 @@ type Props = {
 
 const esquema = Yup.object({
   nombre: Yup.string().trim().required("El nombre es obligatorio"),
+
   descripcion: Yup.string().trim().required("La descripción es obligatoria"),
+
   precio: Yup.number()
     .transform((valor, valorOriginal) =>
       valorOriginal === "" ? undefined : valor,
     )
     .required("El precio es obligatorio")
     .min(0, "El precio no puede ser negativo"),
+
   cantidad: Yup.number()
     .required("La cantidad es obligatoria")
     .integer("La cantidad debe ser un número entero")
     .min(0, "La cantidad no puede ser negativa"),
+
   categoria: Yup.string().trim().required("La categoría es obligatoria"),
+
+  imagen: Yup.string()
+    .trim()
+    .test(
+      "url-imagen",
+      "Ingresá una URL válida que comience con http:// o https://",
+      (valor) => {
+        if (!valor) return true;
+
+        try {
+          const url = new URL(valor);
+
+          return (
+            ["http:", "https:"].includes(url.protocol) && Boolean(url.hostname)
+          );
+        } catch {
+          return false;
+        }
+      },
+    ),
 });
 
 const valoresIniciales: ProductoFormulario = {
@@ -32,9 +58,12 @@ const valoresIniciales: ProductoFormulario = {
   precio: 0,
   cantidad: 0,
   categoria: "",
+  imagen: "",
 };
 
 const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
+  const [errorVistaPrevia, setErrorVistaPrevia] = useState(false);
+
   const formik = useFormik<ProductoFormulario>({
     initialValues: producto
       ? {
@@ -43,14 +72,22 @@ const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
           precio: producto.precio,
           cantidad: producto.cantidad,
           categoria: producto.categoria,
+          imagen: producto.imagen ?? "",
         }
       : valoresIniciales,
 
     enableReinitialize: true,
     validationSchema: esquema,
+
     onSubmit: async (valores, { resetForm, setStatus }) => {
       try {
-        await onGuardar(valores);
+        const datosProducto: ProductoFormulario = {
+          ...valores,
+          imagen: valores.imagen?.trim() ?? "",
+        };
+
+        await onGuardar(datosProducto);
+
         resetForm();
         onCerrar();
       } catch {
@@ -61,8 +98,13 @@ const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
     },
   });
 
+  useEffect(() => {
+    setErrorVistaPrevia(false);
+  }, [mostrar, producto?._id]);
+
   const cerrarModal = () => {
     formik.resetForm();
+    setErrorVistaPrevia(false);
     onCerrar();
   };
 
@@ -120,13 +162,15 @@ const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
     </Form.Group>
   );
 
+  const urlImagen = formik.values.imagen?.trim() ?? "";
+
   return (
     <Modal show={mostrar} onHide={cerrarModal} centered>
       <Form onSubmit={formik.handleSubmit} noValidate>
         <Modal.Header closeButton>
           <Modal.Title>
             {producto ? "Editar producto" : "Agregar producto"}
-          </Modal.Title>{" "}
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -135,6 +179,66 @@ const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
           {campoNumero("precio", "Precio")}
           {campoNumero("cantidad", "Cantidad")}
           {campoTexto("categoria", "Categoría")}
+
+          {/* Imagen opcional */}
+          <Form.Group className="mb-3" controlId="imagen">
+            <Form.Label>Imagen (URL)</Form.Label>
+
+            <Form.Control
+              type="url"
+              name="imagen"
+              placeholder="https://ejemplo.com/imagen.jpg"
+              value={formik.values.imagen ?? ""}
+              onChange={(evento) => {
+                setErrorVistaPrevia(false);
+                formik.handleChange(evento);
+              }}
+              onBlur={formik.handleBlur}
+              isInvalid={!!(formik.touched.imagen && formik.errors.imagen)}
+            />
+
+            <Form.Text className="text-muted">
+              Opcional. Pegá la dirección web de una imagen del producto.
+            </Form.Text>
+
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.imagen}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          {/* Vista previa */}
+          <div className="producto-imagen-preview">
+            <span className="producto-imagen-preview__titulo">
+              Vista previa
+            </span>
+
+            {urlImagen && !errorVistaPrevia ? (
+              <img
+                key={urlImagen}
+                className="producto-imagen-preview__imagen"
+                src={urlImagen}
+                alt={`Vista previa de ${formik.values.nombre || "producto"}`}
+                onError={() => setErrorVistaPrevia(true)}
+              />
+            ) : (
+              <div className="producto-imagen-preview__vacia">
+                {urlImagen && errorVistaPrevia ? (
+                  <>
+                    <i
+                      className="bi bi-exclamation-circle"
+                      aria-hidden="true"
+                    />
+                    <span>No se pudo cargar la imagen.</span>
+                  </>
+                ) : (
+                  <>
+                    <i className="bi bi-box-seam" aria-hidden="true" />
+                    <span>Este producto no tiene imagen.</span>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
 
           {formik.status && (
             <p className="text-danger mt-3 mb-0">{formik.status}</p>
@@ -147,7 +251,7 @@ const ModalProducto = ({ mostrar, producto, onCerrar, onGuardar }: Props) => {
           </Button>
 
           <Button type="submit" disabled={formik.isSubmitting}>
-            Guardar producto
+            {formik.isSubmitting ? "Guardando..." : "Guardar producto"}
           </Button>
         </Modal.Footer>
       </Form>

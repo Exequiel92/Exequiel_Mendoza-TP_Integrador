@@ -1,0 +1,44 @@
+.producto-imagen-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e9f2;
+  border-radius: 14px;
+  background: #f8f9fd;
+}
+
+.producto-imagen-preview__titulo {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #536079;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.producto-imagen-preview__imagen {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.producto-imagen-preview__vacia {
+  display: flex;
+  min-height: 130px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 1px dashed #d7ddec;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #8792a6;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.producto-imagen-preview__vacia i {
+  color: #6579d9;
+  font-size: 2rem;
+}
