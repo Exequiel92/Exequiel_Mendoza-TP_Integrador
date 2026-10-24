@@ -1,0 +1,182 @@
+/* =========================
+   HERRAMIENTAS DEL CATÁLOGO
+========================= */
+
+.lista-productos__acciones-principales {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.lista-productos__guardar-stock {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d9e0f7;
+  border-radius: 11px;
+  background: #ffffff;
+  color: #5268d8;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.lista-productos__guardar-stock:hover:not(:disabled) {
+  border-color: #b9c5f4;
+  background: #f0f3ff;
+  color: #4159cb;
+}
+
+.lista-productos__guardar-stock:disabled {
+  opacity: 0.55;
+}
+
+.lista-productos__filtros {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(200px, 0.8fr) auto;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.3rem;
+  border: 1px solid #e7eaf2;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(38, 48, 75, 0.025);
+}
+
+.lista-productos__filtro {
+  min-width: 0;
+}
+
+.lista-productos__filtro .form-label,
+.producto-card__stock-edicion .form-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #566176;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.lista-productos__control-filtro {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lista-productos__control-filtro .form-select,
+.lista-productos__control-filtro .form-control {
+  min-width: 0;
+  min-height: 42px;
+  border-color: #e0e5ef;
+  border-radius: 9px;
+  font-size: 0.88rem;
+}
+
+.lista-productos__control-filtro .btn {
+  min-width: 44px;
+  border-radius: 9px;
+}
+
+.lista-productos__mostrar-todos {
+  min-height: 42px;
+  border: 1px solid #e0e5ef;
+  border-radius: 9px;
+  background: #f7f8fc;
+  color: #58647a;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.lista-productos__mostrar-todos:hover {
+  border-color: #d1d9f3;
+  background: #eef1ff;
+  color: #5268d8;
+}
+
+/* Mensajes del stock */
+
+.lista-productos__mensaje {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 0.88rem;
+}
+
+.lista-productos__mensaje--exito {
+  border-color: #c9e9da;
+  background: #f0fbf5;
+  color: #237a59;
+}
+
+.lista-productos__mensaje--error {
+  border-color: #f0d4d7;
+  background: #fff7f8;
+  color: #ad3d4a;
+}
+
+/* Editor de cantidades */
+
+.producto-card__stock-edicion {
+  margin-top: auto;
+  padding: 0.9rem 0;
+  border-top: 1px solid #edf0f5;
+}
+
+.producto-card__stock-edicion .form-control {
+  border-color: #dfe5f1;
+  border-radius: 8px;
+  color: #3d485d;
+}
+
+.producto-card__stock-edicion .form-control:focus {
+  border-color: #9caef7;
+  box-shadow: 0 0 0 0.2rem rgba(97, 121, 237, 0.12);
+}
+
+/* Ajustes de las tarjetas */
+
+.producto-card__icono {
+  font-size: 2.5rem;
+}
+
+.producto-card__icono i {
+  line-height: 1;
+}
+
+/* Responsive */
+
+@media (max-width: 991px) {
+  .lista-productos__filtros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lista-productos__mostrar-todos {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .lista-productos__acciones-principales {
+    width: 100%;
+  }
+
+  .lista-productos__acciones-principales > .btn {
+    flex: 1;
+  }
+
+  .lista-productos__filtros {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .lista-productos__mostrar-todos {
+    grid-column: auto;
+    width: 100%;
+  }
+}
