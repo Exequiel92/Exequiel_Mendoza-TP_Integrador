@@ -1,0 +1,582 @@
+/* =========================
+   PRESENTACIÓN PRINCIPAL
+========================= */
+
+.inicio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 4.5rem 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(112, 137, 255, 0.13),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #fbfcff 0%, #f2f5fb 100%);
+}
+
+.inicio__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   TEXTO DE PRESENTACIÓN
+========================= */
+
+.inicio__contenido {
+  padding: 1rem 0;
+}
+
+.inicio__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.6rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #dfe6ff;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #5266bc;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.inicio__punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6179ed;
+  box-shadow: 0 0 0 4px rgba(97, 121, 237, 0.13);
+}
+
+.inicio__titulo {
+  max-width: 740px;
+  margin: 0 0 1.5rem;
+  color: #1d2433;
+  font-size: clamp(2.8rem, 5.2vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.inicio__titulo span {
+  display: block;
+  color: #6179ed;
+}
+
+.inicio__descripcion {
+  max-width: 570px;
+  margin-bottom: 2rem;
+  color: #687387;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.85;
+}
+
+/* =========================
+   BOTÓN PRINCIPAL
+========================= */
+
+.inicio__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.inicio__boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1rem 1.35rem;
+  border: 1px solid #526be1;
+  border-radius: 13px;
+  background: #526be1;
+  box-shadow: 0 8px 20px rgba(82, 107, 225, 0.2);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.inicio__boton:hover {
+  transform: translateY(-2px);
+  background: #4159cb;
+  box-shadow: 0 12px 25px rgba(82, 107, 225, 0.3);
+  color: #ffffff;
+}
+
+.inicio__boton:focus-visible {
+  outline: 3px solid #aebaff;
+  outline-offset: 4px;
+}
+
+.inicio__ayuda {
+  color: #7c8799;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   BENEFICIOS
+========================= */
+
+.inicio__beneficios {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3.2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid #e1e6f0;
+}
+
+.inicio__beneficio {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.inicio__beneficio-icono {
+  display: grid;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #e1e7ff;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #6179ed;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.inicio__beneficio strong,
+.inicio__beneficio small {
+  display: block;
+}
+
+.inicio__beneficio strong {
+  margin-bottom: 0.3rem;
+  color: #30394b;
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.inicio__beneficio small {
+  color: #828da0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   ILUSTRACIÓN
+========================= */
+
+.inicio__visual {
+  position: relative;
+  display: grid;
+  width: 100%;
+  max-width: 440px;
+  min-height: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  place-items: center;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 38px;
+  background: linear-gradient(145deg, #e5ebff, #f0e9ff 55%, #e4f0ff);
+}
+
+.inicio__visual::before,
+.inicio__visual::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(97, 121, 237, 0.12);
+  border-radius: 50%;
+  content: "";
+}
+
+.inicio__visual::before {
+  inset: 9%;
+}
+
+.inicio__visual::after {
+  inset: 18%;
+}
+
+.inicio__orb {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.inicio__orb--uno {
+  top: 8%;
+  right: 10%;
+  width: 65px;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.inicio__orb--dos {
+  bottom: 11%;
+  left: 7%;
+  width: 35px;
+  height: 35px;
+  background: rgba(97, 121, 237, 0.16);
+}
+
+/* Tarjeta central */
+
+.catalogo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 340px;
+  padding: 1.4rem;
+  transform: rotate(-2deg);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  background: #ffffff;
+  box-shadow:
+    0 28px 65px rgba(53, 67, 120, 0.13),
+    0 5px 15px rgba(53, 67, 120, 0.05);
+}
+
+.catalogo__encabezado {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #edf0f6;
+}
+
+.catalogo__marca {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 11px;
+  background: #6179ed;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.catalogo__etiqueta {
+  color: #687387;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.catalogo__estado {
+  width: 9px;
+  height: 9px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: #6dc7a6;
+  box-shadow: 0 0 0 4px rgba(109, 199, 166, 0.15);
+}
+
+/* Figura abstracta */
+
+.catalogo__ilustracion {
+  position: relative;
+  display: grid;
+  height: 175px;
+  margin: 1rem 0;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f0f3ff, #f5efff);
+}
+
+.catalogo__halo {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 1px solid rgba(97, 121, 237, 0.2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 17px rgba(97, 121, 237, 0.04),
+    0 0 0 34px rgba(97, 121, 237, 0.035);
+}
+
+.catalogo__figura {
+  position: relative;
+  display: grid;
+  width: 112px;
+  height: 112px;
+  transform: rotate(-8deg);
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 30px;
+  background: linear-gradient(145deg, #8296ff, #5264d7);
+  box-shadow: 0 18px 30px rgba(82, 100, 215, 0.28);
+}
+
+.catalogo__figura::before {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 23px;
+  content: "";
+}
+
+.catalogo__figura span {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.catalogo__destello {
+  position: absolute;
+  color: #7889ed;
+}
+
+.catalogo__destello--uno {
+  top: 22px;
+  right: 30px;
+  font-size: 1.7rem;
+}
+
+.catalogo__destello--dos {
+  bottom: 27px;
+  left: 34px;
+  color: #bb91ef;
+  font-size: 1.4rem;
+}
+
+/* Texto de la tarjeta */
+
+.catalogo__contenido {
+  padding: 0.25rem 0.1rem 0.8rem;
+}
+
+.catalogo__subtitulo {
+  color: #7887cf;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.catalogo__contenido h2 {
+  margin: 0.65rem 0;
+  color: #262e41;
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.catalogo__contenido p {
+  margin: 0;
+  color: #7d879a;
+  font-size: 0.83rem;
+  line-height: 1.7;
+}
+
+.catalogo__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #edf0f6;
+  color: #5368cf;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+/* Tarjeta flotante */
+
+.inicio__tarjeta-flotante {
+  position: absolute;
+  right: -1rem;
+  bottom: 2rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: calc(100% - 1rem);
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 35px rgba(53, 67, 120, 0.12);
+}
+
+.inicio__check {
+  display: grid;
+  flex: 0 0 35px;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 12px;
+  background: #e4f7ef;
+  color: #24956f;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.inicio__tarjeta-flotante strong,
+.inicio__tarjeta-flotante small {
+  display: block;
+  white-space: nowrap;
+}
+
+.inicio__tarjeta-flotante strong {
+  margin-bottom: 0.25rem;
+  color: #30394b;
+  font-size: 0.82rem;
+}
+
+.inicio__tarjeta-flotante small {
+  color: #858fa1;
+  font-size: 0.7rem;
+}
+
+/* =========================
+   DISEÑO RESPONSIVE
+========================= */
+
+@media (max-width: 1199px) {
+  .inicio__beneficios {
+    gap: 0.7rem;
+  }
+
+  .inicio__beneficio {
+    gap: 0.5rem;
+  }
+
+  .inicio__beneficio-icono {
+    flex-basis: 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .inicio__visual {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .inicio {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .inicio__contenido {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .inicio__visual {
+    max-width: 460px;
+    min-height: 490px;
+    margin-top: 0.5rem;
+  }
+
+  .inicio__titulo {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 575px) {
+  .inicio {
+    padding: 3rem 0;
+  }
+
+  .inicio__contenido {
+    padding: 0;
+  }
+
+  .inicio__etiqueta {
+    margin-bottom: 1.2rem;
+    font-size: 0.66rem;
+  }
+
+  .inicio__titulo {
+    font-size: clamp(2.45rem, 10vw, 3.3rem);
+  }
+
+  .inicio__descripcion {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .inicio__acciones {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .inicio__boton {
+    width: 100%;
+  }
+
+  .inicio__beneficios {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .inicio__beneficio {
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .inicio__visual {
+    min-height: 440px;
+    padding: 1rem;
+    border-radius: 28px;
+  }
+
+  .catalogo {
+    padding: 1rem;
+    border-radius: 21px;
+  }
+
+  .catalogo__ilustracion {
+    height: 145px;
+  }
+
+  .catalogo__contenido h2 {
+    font-size: 1.3rem;
+  }
+
+  .inicio__tarjeta-flotante {
+    right: 0.5rem;
+    bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  .inicio__tarjeta-flotante strong {
+    font-size: 0.75rem;
+  }
+
+  .inicio__tarjeta-flotante small {
+    font-size: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inicio__boton {
+    transition: none;
+  }
+
+  .inicio__boton:hover {
+    transform: none;
+  }
+}
