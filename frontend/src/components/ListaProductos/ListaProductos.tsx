@@ -23,6 +23,34 @@ const formatoPrecio = new Intl.NumberFormat("es-AR", {
   maximumFractionDigits: 2,
 });
 
+type ImagenProductoProps = {
+  producto: Producto;
+};
+
+const ImagenProducto = ({ producto }: ImagenProductoProps) => {
+  const [urlFallida, setUrlFallida] = useState<string | null>(null);
+
+  const urlImagen = producto.imagen?.trim();
+
+  if (!urlImagen || urlFallida === urlImagen) {
+    return (
+      <div className="producto-card__icono" aria-hidden="true">
+        <i className="bi bi-box-seam" />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      className="producto-card__imagen"
+      src={urlImagen}
+      alt={producto.nombre}
+      loading="lazy"
+      onError={() => setUrlFallida(urlImagen)}
+    />
+  );
+};
+
 const ListaProductos = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
   const [categorias, setCategorias] = useState<string[]>([]);
@@ -51,6 +79,8 @@ const ListaProductos = () => {
   const [guardandoStock, setGuardandoStock] = useState(false);
   const [mensajeStock, setMensajeStock] = useState<string | null>(null);
   const [errorStock, setErrorStock] = useState<string | null>(null);
+
+  const [modoEdicionStock, setModoEdicionStock] = useState(false);
 
   // Obtener categorías únicas a partir del catálogo completo
   const actualizarCategorias = (lista: Producto[]) => {
@@ -348,14 +378,44 @@ const ListaProductos = () => {
         </div>
 
         <div className="lista-productos__acciones-principales">
-          <Button
-            className="lista-productos__guardar-stock"
-            onClick={guardarCambiosStock}
-            disabled={!hayCambiosStock || guardandoStock || cargando}
-          >
-            <i className="bi bi-box-seam me-2" aria-hidden="true" />
-            {guardandoStock ? "Guardando..." : "Guardar stock"}
-          </Button>
+          {modoEdicionStock ? (
+            <>
+              <Button
+                className="lista-productos__guardar-stock"
+                onClick={guardarCambiosStock}
+                disabled={!hayCambiosStock || guardandoStock || cargando}
+              >
+                <i className="bi bi-check-lg me-2" aria-hidden="true" />
+                {guardandoStock ? "Guardando..." : "Guardar cambios"}
+              </Button>
+
+              <Button
+                variant="outline-secondary"
+                onClick={() => {
+                  sincronizarStock(productos);
+                  setModoEdicionStock(false);
+                  setMensajeStock(null);
+                  setErrorStock(null);
+                }}
+                disabled={guardandoStock}
+              >
+                Cancelar
+              </Button>
+            </>
+          ) : (
+            <Button
+              className="lista-productos__guardar-stock"
+              onClick={() => {
+                sincronizarStock(productos);
+                setModoEdicionStock(true);
+                setMensajeStock(null);
+                setErrorStock(null);
+              }}
+            >
+              <i className="bi bi-sliders me-2" aria-hidden="true" />
+              Editar stock
+            </Button>
+          )}
 
           <Button className="lista-productos__agregar" onClick={abrirAgregar}>
             <i className="bi bi-plus-lg me-2" aria-hidden="true" />
@@ -554,12 +614,10 @@ const ListaProductos = () => {
               <Card className="producto-card h-100">
                 <div className="producto-card__visual">
                   <span className="producto-card__categoria-visual">
-                    {producto.categoria || "General"}
+                    CATÁLOGO
                   </span>
 
-                  <div className="producto-card__icono" aria-hidden="true">
-                    <i className="bi bi-box-seam" />
-                  </div>
+                  <ImagenProducto producto={producto} />
 
                   <span className="producto-card__referencia">PRODUCTO</span>
                 </div>
@@ -600,33 +658,35 @@ const ListaProductos = () => {
                   </div>
 
                   {/* Editar el stock directamente desde la tarjeta */}
-                  <div className="producto-card__stock-edicion">
-                    <Form.Label htmlFor={`stock-${producto._id}`}>
-                      Cantidad en stock
-                    </Form.Label>
+                  {modoEdicionStock && (
+                    <div className="producto-card__stock-edicion">
+                      <Form.Label htmlFor={`stock-${producto._id}`}>
+                        Nueva cantidad
+                      </Form.Label>
 
-                    <Form.Control
-                      id={`stock-${producto._id}`}
-                      type="number"
-                      min={0}
-                      step={1}
-                      size="sm"
-                      value={
-                        stockPendiente[producto._id] ??
-                        String(producto.cantidad)
-                      }
-                      onChange={(evento) => {
-                        setStockPendiente((anterior) => ({
-                          ...anterior,
-                          [producto._id]: evento.target.value,
-                        }));
+                      <Form.Control
+                        id={`stock-${producto._id}`}
+                        type="number"
+                        min={0}
+                        step={1}
+                        size="sm"
+                        value={
+                          stockPendiente[producto._id] ??
+                          String(producto.cantidad)
+                        }
+                        onChange={(evento) => {
+                          setStockPendiente((anterior) => ({
+                            ...anterior,
+                            [producto._id]: evento.target.value,
+                          }));
 
-                        setMensajeStock(null);
-                        setErrorStock(null);
-                      }}
-                      disabled={guardandoStock}
-                    />
-                  </div>
+                          setMensajeStock(null);
+                          setErrorStock(null);
+                        }}
+                        disabled={guardandoStock}
+                      />
+                    </div>
+                  )}
 
                   <div className="producto-card__acciones">
                     <Button
