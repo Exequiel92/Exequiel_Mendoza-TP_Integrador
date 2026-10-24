@@ -3,7 +3,6 @@ const router = express.Router();
 
 const ModelProducto = require("../models/productos.models");
 
-// Obtener todos los productos
 router.get("/productos", async (req, res) => {
   try {
     const productos = await ModelProducto.find();
@@ -16,7 +15,6 @@ router.get("/productos", async (req, res) => {
   }
 });
 
-// Obtener un producto por ID
 router.get("/productos/:id", async (req, res) => {
   try {
     const producto = await ModelProducto.findById(req.params.id);
@@ -36,7 +34,6 @@ router.get("/productos/:id", async (req, res) => {
   }
 });
 
-// Crear producto
 router.post("/productos", async (req, res) => {
   try {
     const producto = await ModelProducto.create(req.body);
@@ -46,7 +43,6 @@ router.post("/productos", async (req, res) => {
   }
 });
 
-// Actualizar producto
 router.put("/productos/:id", async (req, res) => {
   try {
     const producto = await ModelProducto.findByIdAndUpdate(
@@ -73,7 +69,6 @@ router.put("/productos/:id", async (req, res) => {
   }
 });
 
-// Eliminar producto
 router.delete("/productos/:id", async (req, res) => {
   try {
     const producto = await ModelProducto.findByIdAndDelete(req.params.id);
@@ -95,7 +90,8 @@ router.delete("/productos/:id", async (req, res) => {
   }
 });
 
-// Actualizar stock de varios productos
+// Endpoints de negocio
+
 router.put("/productos/actualizar-stock", async (req, res) => {
   try {
     const productos = req.body;
@@ -123,7 +119,6 @@ router.put("/productos/actualizar-stock", async (req, res) => {
   }
 });
 
-// Obtener productos por categoría
 router.get("/productos/categoria/:categoria", async (req, res) => {
   try {
     const productos = await ModelProducto.find({
@@ -145,7 +140,6 @@ router.get("/productos/categoria/:categoria", async (req, res) => {
   }
 });
 
-// Productos con bajo stock
 router.get("/productos/bajo-stock/:cantidad", async (req, res) => {
   try {
     const cantidad = Number(req.params.cantidad);
