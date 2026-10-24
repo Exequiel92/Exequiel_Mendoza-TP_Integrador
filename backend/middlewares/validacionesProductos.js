@@ -58,6 +58,31 @@ const validarDatosProducto = [
     .notEmpty()
     .withMessage("La categoría es obligatoria."),
 
+  body("imagen")
+    .optional({ values: "undefined" })
+    .isString()
+    .withMessage("La imagen debe ser una URL de texto.")
+    .bail()
+    .trim()
+    .custom((valor) => {
+      if (valor === "") {
+        return true;
+      }
+
+      try {
+        const url = new URL(valor);
+
+        return (
+          ["http:", "https:"].includes(url.protocol) && Boolean(url.hostname)
+        );
+      } catch {
+        return false;
+      }
+    })
+    .withMessage(
+      "La imagen debe ser una URL válida que comience con http:// o https://.",
+    ),
+
   validarResultado,
 ];
 
