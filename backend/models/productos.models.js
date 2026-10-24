@@ -28,6 +28,12 @@ const productoSchema = new mongoose.Schema(
       required: true,
     },
 
+    imagen: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
     fechaIngreso: {
       type: Date,
       default: Date.now,
